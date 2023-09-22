@@ -1,0 +1,27 @@
+def evaluate_expression(expression):
+ 
+  stack = []
+  tokens = expression.split()
+  for token in tokens:
+    if token.isnumeric():
+      stack.append(float(token))
+    elif token == "(":
+      stack.append(token)
+    elif token == ")":
+      while stack[-1] != "(":
+        operand1 = stack.pop()
+        operand2 = stack.pop()
+        operator = stack.pop()
+        result = eval(operand1 + operator + operand2)
+        stack.append(result)
+      stack.pop()
+    else:
+      operand1 = stack.pop()
+      operand2 = stack.pop()
+      result = eval(operand1 + token + operand2)
+      stack.append(result)
+  return stack[-1]
+
+expression = "(2 + 3) * 4"
+result = evaluate_expression(expression)
+print(result)
