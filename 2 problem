@@ -1,0 +1,25 @@
+class BrowserHistory:
+  def __init__(self):
+    self.back_stack = []
+    self.forward_stack = []
+
+  def go_to(self, page):
+    self.forward_stack = []
+    self.back_stack.append(page)
+
+  def go_back(self):
+    if not self.forward_stack:
+      return None
+
+    page = self.forward_stack.pop()
+    self.back_stack.append(page)
+    return page
+
+browser_history = BrowserHistory()
+
+browser_history.go_to("https://www.google.com")
+
+browser_history.go_to("https://www.facebook.com")
+
+previous_page = browser_history.go_back()
+print(previous_page)
