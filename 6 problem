@@ -1,0 +1,17 @@
+def is_palindrome(string):
+  
+  stack = []
+  for character in string:
+    stack.append(character)
+
+  while stack:
+    character = stack.pop()
+    if character != string[-1]:
+      return False
+    string = string[:-1]
+
+  return True
+
+string = "racecar"
+is_palindrome = is_palindrome(string)
+print(is_palindrome)
