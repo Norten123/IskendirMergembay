@@ -1,0 +1,16 @@
+def evaluate_rpn(tokens):
+
+  stack = []
+  for token in tokens:
+    if token.isnumeric():
+      stack.append(float(token))
+    else:
+      operand1 = stack.pop()
+      operand2 = stack.pop()
+      result = eval(operand1 + token + operand2)
+      stack.append(result)
+  return stack[-1]
+
+rpn_expression = "2 3 +"
+result = evaluate_rpn(rpn_expression)
+print(result)
